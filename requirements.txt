@@ -1,0 +1,25 @@
+# Proyecto final Minería de Datos — UNMSM FISI 2026-I
+# Entorno: Python 3.14 (venv/). Instalar con: pip install -r requirements.txt
+# (la descarga del dataset crudo tiene su propio requirements en descargas/)
+
+# Datos y modelos
+pandas
+scikit-learn
+xgboost
+imbalanced-learn
+statsmodels
+
+# Interpretabilidad (Panel 2)
+shap
+lime
+
+# Visualización
+plotly
+seaborn
+
+# Dashboard (Fase 3)
+streamlit
+
+# Notebooks (Fase 2): fuente .py en formato percent → .ipynb con jupytext
+jupytext
+jupyter

@@ -1,2 +1,23 @@
+# Entorno virtual
+venv/
+final-proyect/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PDFs (el enunciado del trabajo pesa 4MB; el informe PDF se genera al final desde informe.md)
 *.pdf
+
+# Base de datos local del CRUD (Panel 4)
+*.db
+*.sqlite3
+
+# Secretos de Streamlit
+.streamlit/secrets.toml
+
 *.md
+.claude/

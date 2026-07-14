@@ -1,0 +1,6 @@
+# Solo para la descarga reproducible del CSV crudo de SUNASS.
+# Uso:
+#   pip install -r requirements.txt
+#   playwright install chromium
+#   cd descargas && python descargar_sunass.py
+playwright
