@@ -8,6 +8,7 @@ scikit-learn
 xgboost
 imbalanced-learn
 statsmodels
+holidays  # calendario de feriados de Perú para la feature es_feriado (Fase 1)
 
 # Interpretabilidad (Panel 2)
 shap
