@@ -1,0 +1,3 @@
+features,f1_PROG,rec_PROG,prec_PROG,roc_auc,accuracy
+con motivo_agrupado,0.9122,0.918,0.9065,0.9857,0.9578
+sin motivo_agrupado,0.7525,0.7998,0.7105,0.9231,0.8743

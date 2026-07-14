@@ -4,7 +4,9 @@
 
 # Datos y modelos
 pandas
-scikit-learn
+# scikit-learn FIJADO a la versión local: el dashboard deserializa
+# dashboard/modelos/clasificador_final.joblib y el unpickle exige la misma versión
+scikit-learn==1.9.0
 xgboost
 imbalanced-learn
 statsmodels

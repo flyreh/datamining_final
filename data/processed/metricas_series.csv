@@ -1,0 +1,4 @@
+modelo,MAPE_pct,RMSE
+Media movil (4 sem),14.946,38.457
+"ARIMA (2, 1, 1)",15.131,39.379
+Suavizado exponencial (HW),23.2,54.435
