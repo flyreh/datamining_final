@@ -107,14 +107,14 @@ with col_b:
 # ══════════════════════════════════════════ 4. Interpretabilidad
 st.header("4. ¿Por qué predice lo que predice? (SHAP + LIME)")
 
-col_a, col_b = st.columns(2)
 img_summary = comunes.RUTA_RECURSOS / "shap_summary.png"
 img_importancia = comunes.RUTA_RECURSOS / "shap_importancia.png"
 if img_summary.exists():
-    col_a.image(str(img_summary), caption="SHAP summary: cada punto es un registro "
-                "del test; rojo = valor alto de la feature. A la derecha empuja "
-                "hacia PROGRAMADA.")
-    col_b.image(str(img_importancia), caption="Importancia global (|SHAP| medio).")
+    st.image(str(img_summary), width="stretch",
+             caption="SHAP summary: cada punto es un registro del test; rojo = "
+                     "valor alto de la feature. A la derecha empuja hacia PROGRAMADA.")
+    st.image(str(img_importancia), width="stretch",
+             caption="Importancia global (|SHAP| medio).")
 else:
     st.warning("Ejecutar notebooks/src/03_clasificacion.py para generar los PNG de SHAP.")
 
@@ -128,9 +128,9 @@ with st.expander("Un caso explicado: force plot (SHAP) + LIME"):
     img_force = comunes.RUTA_RECURSOS / "shap_force_caso.png"
     img_lime = comunes.RUTA_RECURSOS / "lime_caso.png"
     if img_force.exists():
-        st.image(str(img_force), caption="SHAP force plot del caso")
+        st.image(str(img_force), width="stretch", caption="SHAP force plot del caso")
     if img_lime.exists():
-        st.image(str(img_lime), caption="LIME del mismo caso")
+        st.image(str(img_lime), width="stretch", caption="LIME del mismo caso")
 
 # ══════════════════════════════════════════ 5. Predicción en vivo
 st.header("5. Predicción en vivo")

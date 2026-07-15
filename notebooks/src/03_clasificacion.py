@@ -308,14 +308,28 @@ valor_base = float(np.atleast_1d(explicador.expected_value)[-1])
 print("shap values:", np.shape(shap_prog), "| valor base (prob. media PROGRAMADA):",
       round(valor_base, 3))
 
-shap.summary_plot(shap_prog, X_muestra, max_display=15, show=False)
+
+# Nombres cortos SOLO para los gráficos: los dummies completos
+# ("motivo_agrupado_LIMPIEZA Y DESINFECCIÓN...") aplastan el área de dibujo
+def nombre_corto(col: str) -> str:
+    col = (col.replace("motivo_agrupado_", "motivo: ")
+              .replace("DEPARTAMENTO_", "depto: ")
+              .replace("hora_inicio_bin_", "franja: "))
+    return col if len(col) <= 42 else col[:39] + "..."
+
+
+nombres_grafico = [nombre_corto(c) for c in X.columns]
+
+shap.summary_plot(shap_prog, X_muestra, feature_names=nombres_grafico,
+                  max_display=15, plot_size=(12, 6.5), show=False)
 plt.title("SHAP — impacto de cada feature (hacia PROGRAMADA)")
 plt.tight_layout()
 plt.savefig(RUTA_RECURSOS / "shap_summary.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # %% SHAP — ranking de importancia media absoluta
-shap.summary_plot(shap_prog, X_muestra, plot_type="bar", max_display=15, show=False)
+shap.summary_plot(shap_prog, X_muestra, feature_names=nombres_grafico,
+                  plot_type="bar", max_display=15, plot_size=(10, 6), show=False)
 plt.title("SHAP — importancia media |valor|")
 plt.tight_layout()
 plt.savefig(RUTA_RECURSOS / "shap_importancia.png", dpi=150, bbox_inches="tight")
@@ -336,16 +350,17 @@ elif np.ndim(shap_caso) == 3:
     shap_caso_prog = shap_caso[:, :, 1]
 else:
     shap_caso_prog = shap_caso
-shap.force_plot(valor_base, shap_caso_prog[0], X_test.loc[idx_caso],
-                matplotlib=True, show=False)
-plt.tight_layout()
+# text_rotation evita que los nombres de las features se superpongan en horizontal
+shap.force_plot(valor_base, shap_caso_prog[0], X_test.loc[idx_caso].values,
+                feature_names=nombres_grafico, matplotlib=True, show=False,
+                figsize=(16, 4), text_rotation=30)
 plt.savefig(RUTA_RECURSOS / "shap_force_caso.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # %% LIME sobre el mismo caso (complemento local)
 explicador_lime = LimeTabularExplainer(
     training_data=X_train.values,
-    feature_names=list(X.columns),
+    feature_names=nombres_grafico,
     class_names=["IMPREVISTA", "PROGRAMADA"],
     mode="classification",
     random_state=RANDOM_STATE,
@@ -356,7 +371,7 @@ explicacion = explicador_lime.explain_instance(
     num_features=10,
 )
 fig = explicacion.as_pyplot_figure()
-fig.set_size_inches(8, 4.5)
+fig.set_size_inches(10, 5)
 plt.title("LIME — contribuciones locales del caso")
 plt.tight_layout()
 plt.savefig(RUTA_RECURSOS / "lime_caso.png", dpi=150, bbox_inches="tight")
