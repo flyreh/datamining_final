@@ -69,7 +69,7 @@ eliminar desde el navegador (SQLite).
 
 st.divider()
 st.markdown("""
-**Equipo**: _(completar los 3 integrantes)_ ·
+**Equipo**: Bayes Eva Maria, River Llancari Aldair, Sernaque Cobeñas José·
 **Repositorio**: [github.com/flyreh/datamining_final](https://github.com/flyreh/datamining_final) ·
 **Curso**: Minería de Datos, Dr. José Alfredo Herrera Quispe, UNMSM-FISI 2026-I
 """)
